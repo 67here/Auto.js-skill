@@ -54,14 +54,14 @@ function cs_click(rgb, xr, yr, wr, hr) {
           return click(point.x, point.y);
       }
 }
-//OCR 三连发
+//百度OCR 三连发
 //ocr1 返回识图结果
 function Baidu_ocr(imgFile){
   log("识图...");
   var imag64 = images.toBase64(imgFile, "png", 100);
-  var API_Key="XDOIwHjkjrMjyBs2lstmEKYx";
-  var Secret_Key="Ec7ZNzja6GMRzlSoTcON8sTGxR35F4n7";
-  var getTokenUrl="https://aip.baidubce.com/oauth/2.0/token";
+  var API_Key="自己的AK";
+  var Secret_Key="自己的SK";
+  var getTokenUrl="https://aip.baidubce.com/oauth/2.0/token";//选择网络图片识别
   var token_Res = http.post(getTokenUrl, {
       grant_type: "client_credentials",
       client_id: API_Key,
@@ -75,7 +75,7 @@ function Baidu_ocr(imgFile){
       },
       access_token: access_token,
       image: imag64,
-      language_type:"CHN_ENG"
+      language_type:"CHN_ENG"//可添加额外参数
   });
   sleep(1000);
   var json = ocr_Res.body.json();
