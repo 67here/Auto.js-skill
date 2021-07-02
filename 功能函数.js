@@ -1,5 +1,7 @@
 //1.初始化
 auto.waitFor();
+if(click(1, 1) != true) {toastLog('无障碍崩溃，请重启手机');exit();}
+
 
 //2.涉及使用屏幕长宽数据的初始化
 var dev_hight = device.height;
