@@ -1,12 +1,8 @@
 //1.初始化
 auto.waitFor();
-if(click(1, 1) != true) {toastLog('无障碍崩溃，请重启手机');exit();}
 
-
-//2.涉及使用屏幕长宽数据的初始化
-var dev_hight = device.height;
-var dev_width = device.width;
-if(dev_hight && dev_width == 0) {toastLog('BUG啦，请重启手机');exit();};
+//2.使用屏幕长宽数据的初始化
+if(!device.width) {toastLog('BUG啦，请重启手机');exit();};
 
 //3.截图初始化
 if(!requestScreenCapture()){
@@ -56,6 +52,10 @@ function cs_click(rgb, xr, yr, wr, hr) {
           return click(point.x, point.y);
       }
 }
+
+10.多词匹配
+let sth = textMatches('.+关键词.+|.+关键词.+|.+关键词.+');
+
 //百度OCR 三连发
 //ocr1 返回识图结果
 function Baidu_ocr(imgFile){
