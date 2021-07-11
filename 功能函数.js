@@ -53,8 +53,15 @@ function cs_click(rgb, xr, yr, wr, hr) {
       }
 }
 
-10.多词匹配
+//10.多词匹配
 let sth = textMatches('.+关键词.+|.+关键词.+|.+关键词.+');
+
+//11.意图启动
+app.startActivity({
+  packageName:'com.taobao.live',
+  action:'VIEW',
+  className:'com.taobao.live.TaoLiveVideoActivity'
+  }); 
 
 //百度OCR 三连发
 //ocr1 返回识图结果
