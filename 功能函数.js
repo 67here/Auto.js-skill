@@ -53,15 +53,33 @@ function cs_click(rgb, xr, yr, wr, hr) {
       }
 }
 
-//10.多词匹配
+//10.多词匹配 同样适用于descMatch 等等
 let sth = textMatches('.+关键词.+|.+关键词.+|.+关键词.+');
 
-//11.意图启动
+//11.意图启动格式
 app.startActivity({
   packageName:'com.taobao.live',
   action:'VIEW',
   className:'com.taobao.live.TaoLiveVideoActivity'
   }); 
+
+//12.自动校准归位
+threads.start(function(){
+  while(true){
+      var current_page = currentActivity();
+      sleep(15000);
+      var current_page2 = currentActivity();
+      if(check_flag){
+          if(current_page == current_page2) {
+              log('已堵塞,重启中...');
+              thread_main.interrupt();
+              comeback();//回到原点
+              main_thread();//重新执行
+              continue;
+          }
+      }
+  }
+})
 
 //百度OCR 三连发
 //ocr1 返回识图结果
