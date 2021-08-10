@@ -81,6 +81,31 @@ threads.start(function(){
   }
 })
 
+//保持运行activity
+function keep_running(say, avtivity, package, avti_data){
+	toastLog(say);home();sleep(1000);
+  toastLog('启动中...');
+  app.launch(package);sleep(1000);
+  app.startActivity({
+    packageName: package,
+    data: avti_data
+  });
+  sleep(5000);
+  while(currentActivity() != avtivity){
+    toastLog('启动中...');
+    app.launch(package);sleep(1000);
+    app.startActivity({
+        packageName: package,
+        data: avti_data
+      });
+    sleep(12000);
+  }
+  toastLog('已启动');
+}
+
+//举例：
+keep_running('环节1：吃货豆浏览', 'me.ele.component.webcontainer.view2.AppUCWeb2Activity', 'me.ele', 'eleme://web?&url=https://h5.ele.me/svip/task-list');
+
 //百度OCR 三连发
 //ocr1 返回识图结果
 function Baidu_ocr(imgFile){
